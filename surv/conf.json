@@ -1,0 +1,17 @@
+{
+	"show_video": false,
+	"use_dropbox": true,
+	"dropbox_key": "sdxc6tsfnyu13r0",
+	"dropbox_secret": "v1a4oz98ehcjt9t",
+	"dropbox_base_path": "/Motion",
+        "access_token": "Bpd1KPrWBgAAAAAAAAAAft9Wxbo-NUL2DOu7Slf0uZiyWugUdHQAP0VkPV4aVBhH",
+	"min_upload_seconds": 3.0,
+	"min_motion_frames": 6,
+	"camera_warmup_time": 1.5,
+	"delta_thresh": 8,
+	"resolution": [1000, 600],
+	"fps": 25,
+	"min_area": 5000,
+	"averaging": 0.5,
+	"display": "frame"
+}
