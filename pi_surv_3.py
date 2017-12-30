@@ -8,7 +8,7 @@ import cv2
 import socket
 import sys
 
-show_video = false
+show_video = 0
 min_upload_seconds = 3.0
 min_motion_frames = 6
 camera_warmup_time = 1.5
@@ -99,8 +99,8 @@ for f in camera.capture_continuous(rawCapture, format="bgr", use_video_port=True
 			# high enough
 			if motionCounter >= min_motion_frames:
 				# write the image to temporary file
-				t = "{basepath}{ts}{ext}".format(base_path="./",ts=ts,ext=".jpg")
-				print t
+				t = "{base_path}{ts}{ext}".format(base_path="./",ts=ts,ext=".jpg")
+				print ("TimeStamp: ",t)
 				cv2.imwrite(t, frame)
 
 				# update the last uploaded timestamp and reset the motion
