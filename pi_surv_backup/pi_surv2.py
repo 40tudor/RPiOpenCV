@@ -16,15 +16,28 @@ import sys
 
 # function to check internet connection
 def check_internet(host="8.8.8.8", port=53, timeout=10):
+	s = None
+	socket.setdefaulttimeout(timeout)
+	print("[Checking Internet]")
 	try:
-		print("[CHECKING INTERNET]")
-		socket.setdefaulttimeout(timeout)
-		socket.socket(socket.AF_INET, socket.SOCK_STREAM).connect((host, port))
-		print("[INTERNET UP]")
-		return True
-	except socket.error as msg:
-		print("[INTERNET DOWN] :: {}".format(msg))
+		s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+	except OSError as msg:
+		print("--> [ERROR] {}".format(msg))
+		s = None
+		
+	try:
+		s.connect((host,port))
+	except OSError as msg:
+		s.close()
+		s = None
+		
+	if s is None:
+		print("--> Internet Down")
 		return False
+	else:
+		print("--> Internet Up")
+		s.close()
+		return True
 
 # construct the argument parser and parse the arguments
 ap = argparse.ArgumentParser()
@@ -143,12 +156,14 @@ for f in camera.capture_continuous(rawCapture, format="bgr", use_video_port=True
 					# print ("dbxpath = {}".format(path))
 					if check_internet():
 						try:
+							isdown = False
 							response = client.files_upload(open(t.path,'rb'),path)
 							print("[UPLOADED]")
 						except dropbox.exceptions.ApiError as msg:
 							print("[UPLOAD FAILED] {}".format(msg))
 					else:
 						print("[UPLOAD FAILED] Internet down")
+						isdown = True
 
 				t.cleanup() 
 
