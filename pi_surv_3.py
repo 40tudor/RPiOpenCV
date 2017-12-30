@@ -2,20 +2,11 @@
 from surv.TempImage import TempImage
 from picamera.array import PiRGBArray
 from picamera import PiCamera
-#import argparse
-import warnings
 import datetime
-#import json
 import time
 import cv2
 import socket
 import sys
-
-# construct the argument parser and parse the arguments
-#ap = argparse.ArgumentParser()
-#ap.add_argument("-c", "--conf", required=True, help="path to the JSON configuration file")
-#args = vars(ap.parse_args())
-# print(args["conf"])
 
 show_video = false
 min_upload_seconds = 3.0
@@ -23,14 +14,10 @@ min_motion_frames = 6
 camera_warmup_time = 1.5
 delta_thresh = 8
 resolution = [1000, 600]
-fps= 20
+fps = 20
 min_area = 5000
 averaging = 0.5
 display = "frame"
-
-# filter warnings, load the configuration
-#warnings.filterwarnings("ignore")
-#conf = json.load(open(args["conf"]))
 
 # initialize the camera and grab a reference to the raw camera capture
 camera = PiCamera()
