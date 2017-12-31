@@ -4,8 +4,8 @@ from picamera import PiCamera
 import datetime
 import time
 import cv2
-import socket
-import sys
+#import socket
+#import sys
 
 show_video = 0
 min_upload_seconds = 3.0
@@ -84,7 +84,7 @@ for f in camera.capture_continuous(rawCapture, format="bgr", use_video_port=True
 		motionCounter += 1
 
 		# draw the text and timestamp on the frame
-		ts = timestamp.strftime("%A %d %B %Y %I:%M:%S%p")
+		ts = timestamp.strftime("%a %d%b%y %H-%M-%S")
 		cv2.putText(frame, "Room Status: {}".format(text), (10, 20),
 			cv2.FONT_HERSHEY_PLAIN, 1, (255, 255, 255), 1)
 		cv2.putText(frame, ts, (10, frame.shape[0] - 10), cv2.FONT_HERSHEY_PLAIN,
